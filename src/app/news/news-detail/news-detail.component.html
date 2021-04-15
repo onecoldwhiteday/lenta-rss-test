@@ -1,0 +1,25 @@
+
+
+<mat-card-subtitle class="details-dialog-title">
+  <h2 mat-dialog-title><strong>{{ article.title }}</strong></h2>
+  <i class="text-color-primary">{{ parseDate(published) }}</i>
+</mat-card-subtitle>
+
+
+<mat-dialog-content class="details-dialog-content">
+
+  <div class="details-dialog-image-wrapper">
+    <img [src]="article.image" class="details-dialog-cover" alt="Обложка" />
+  </div>
+
+  <p *ngFor="let section of article.content">
+    {{ section }}
+  </p>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="warn" (click)="close()">
+    Закрыть
+  </button>
+</mat-dialog-actions>

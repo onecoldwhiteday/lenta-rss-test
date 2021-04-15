@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+
+  & * {
+    font-family: 'Fira Sans', sans-serif;
+  }
+}
+
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config( $font-family: 'Roboto, monospace', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500) );
+
+$primary: #4ab3ad;
+$default-padding: 30px;
+
+.text-color-primary {
+  color: $primary;
+}
+
+.background-primary {
+    background-color: $primary;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.default-padding {
+    padding: $default-padding;
+}
+
+.default-vertical-padding {
+    padding: $default-padding 0;
+}
+
+.default-horizontal-padding {
+    padding: 0 $default-padding;
+}
