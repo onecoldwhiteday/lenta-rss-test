@@ -22,7 +22,7 @@
     </ng-container>
     <ng-container matColumnDef="link">
       <th mat-header-cell *matHeaderCellDef class="text-center">Ссылка</th>
-      <td mat-cell *matCellDef="let article" class="news-table-cell">
+      <td mat-cell *matCellDef="let article" class="news-table-cell text-center">
         <a [href]="article.link" target="_blank">Читать на Lenta.ru</a>
       </td>
     </ng-container>
@@ -32,7 +32,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let article; columns: displayedColumns;" (click)="selectRow(news.indexOf(article))" [ngClass]="{ 'selected-row': isSelected(news.indexOf(article)) }" class="table-row news-row" (dblclick)="openNewsDetail(article)"></tr>
+    <tr mat-row *matRowDef="let article; columns: displayedColumns;" (click)="selectRow(article.link)" [ngClass]="{ 'selected-row': isSelected(article.link) }" class="table-row news-row" (dblclick)="openNewsDetail(article)"></tr>
   </table>
   <div class="update-button-wrapper">
     <button mat-button class="update-button text-white background-primary" (click)="refreshData()">

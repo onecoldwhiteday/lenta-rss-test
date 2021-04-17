@@ -31,7 +31,7 @@ export class NewsTableComponent implements OnInit, OnDestroy {
 
   public refreshSubject = new BehaviorSubject(0);
 
-  private selectedRowId?: number;
+  private selectedRow = '';
 
   constructor(
     public dialog: MatDialog,
@@ -73,9 +73,7 @@ export class NewsTableComponent implements OnInit, OnDestroy {
   ): Observable<INewsShort[]> {
     return this.newsService.getNews(limit, offset).pipe(
       map((res: PaginatedResponse<INewsShort>): INewsShort[] => {
-        if (this.news.length) {
-          this.news = [];
-        }
+        this.news = [];
         return res.results;
       }),
     )
@@ -123,15 +121,15 @@ export class NewsTableComponent implements OnInit, OnDestroy {
     this.refreshSubject.next(0);
   }
 
-  public isSelected(id: number): boolean {
-    return this.selectedRowId === id;
+  public isSelected(index: string): boolean {
+    return this.selectedRow === index;
   }
 
-  public selectRow(id: number): void {
-    if (this.selectedRowId === id) {
-      this.selectedRowId = undefined;
+  public selectRow(index: string): void {
+    if (this.selectedRow === index) {
+      this.selectedRow = '';
     } else {
-      this.selectedRowId = id;
+      this.selectedRow = index;
     }
   }
 }

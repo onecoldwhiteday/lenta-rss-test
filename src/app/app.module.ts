@@ -13,7 +13,6 @@ import { SharedModule } from './modules/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const routes: Routes = [
   {
@@ -32,7 +31,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     MatIconModule,
-    MatProgressBarModule,
     MatButtonModule,
     RouterModule.forRoot(routes),
     SharedModule,
