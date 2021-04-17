@@ -88,7 +88,7 @@ export class CategoryStatsBarComponent implements OnInit, OnChanges {
       .attr("width", x.bandwidth())
       .attr("height", (d: INewsShort) => this.height - y(data.filter(el => el.category == d.category).length))
       .attr("fill", "#4ab3ad")
-      .attr("opacity", 0.5);
+      .attr("opacity", 0.5)
 
     bars.exit().remove();
   }

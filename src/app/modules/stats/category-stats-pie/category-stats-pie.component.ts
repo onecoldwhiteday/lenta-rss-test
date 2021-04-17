@@ -12,8 +12,8 @@ import { INewsShort } from '../../news/types/news.type';
 export class CategoryStatsPieComponent implements OnInit, OnChanges {
   private svg: any;
   private margin = 50;
-  private width = 400;
-  private height = 600;
+  private width = 500;
+  private height = 400;
   private radius = Math.min(this.width, this.height) / 2 - this.margin;
   private colors: any;
   private data: INewsShort[] = [];
@@ -83,7 +83,7 @@ export class CategoryStatsPieComponent implements OnInit, OnChanges {
       pieces.enter()
       .append('path')
       .attr('d', d3.arc()
-        .innerRadius(0)
+        .innerRadius(100)
         .outerRadius(this.radius)
     )
       .attr('fill', (d: INewsShort, i: number) => (this.colors(i)))
