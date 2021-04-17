@@ -3,10 +3,10 @@ const path = require('path');
 
 const app = express();
 
-app.use(express.static(__dirname + '/dist/*')); // FIXME: find the proper path
+app.use(express.static(__dirname + '/dist/lentaru-rss-test'));
 
 app.get('/*', (req, res, next) => {
-  res.sendFile(path.join(__dirname + '/dist/dictionary/index.html')); // FIXME: find the proper path
+  res.sendFile(path.join(__dirname + '/dist/lentaru-rss-test/index.html'));
 });
 
 
