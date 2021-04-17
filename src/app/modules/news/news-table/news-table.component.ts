@@ -11,6 +11,7 @@ import { PaginatedResponse } from '../../../types/paginated-response';
 import { NewsDetailComponent } from '../news-detail/news-detail.component';
 import { LoaderService } from '../../../services/loader.service';
 import { HttpErrorHandler } from '../../error-handler/error-handler';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-news-table',
@@ -82,7 +83,7 @@ export class NewsTableComponent implements OnInit, OnDestroy {
     return this.newsService.getNews(limit, offset).pipe(
       map((res: PaginatedResponse<INewsShort>): INewsShort[] => {
         this.news = [];
-        return res.results;
+        return _.uniqBy(res.results, 'title');
       }),
     )
   }
