@@ -12,4 +12,10 @@ export class PageHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scrollToCharts() {
+    const pageHeight = document.documentElement.scrollHeight;
+    if (pageHeight) {
+      window.scrollTo(0, pageHeight);
+    }
+  }
 }

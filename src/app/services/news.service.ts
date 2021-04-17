@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { INewsDetail, INewsShort } from "../news/types/news.type";
+import { INewsDetail, INewsShort } from "../modules/news/types/news.type";
 import { PaginatedResponse } from "../types/paginated-response";
 import { ApiService } from "./api.service";
 

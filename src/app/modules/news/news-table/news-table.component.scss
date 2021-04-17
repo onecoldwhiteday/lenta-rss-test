@@ -25,6 +25,16 @@
     line-height: 1.2;
 }
 
+.text-center {
+  text-align: center;
+
+  &.sort-header-cell {
+    display: flex;
+    padding: 21px 0;
+    justify-content: center;
+  }
+}
+
 .news-row {
   cursor: pointer;
   height: 80px;
@@ -35,14 +45,13 @@
   }
 }
 
-
 .update-button-wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 .update-button {
-  width: 100px;
+  width: 120px;
   margin: 0 auto;
 }
 
@@ -58,4 +67,8 @@
 
 .article-title {
   text-align: left;
+}
+
+.selected-row {
+  background-color: rgb(235 13 122 / 0.1);
 }

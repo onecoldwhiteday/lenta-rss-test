@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { parseDateHelper } from '../../../helpers/parse-date-helper';
 import { INewsDetail } from '../types/news.type';
 
 @Component({
@@ -11,6 +12,7 @@ export class NewsDetailComponent {
 
   public published: string;
   public article: INewsDetail;
+  public parseDate: (date: string) => string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { date: string, article: INewsDetail },
@@ -18,10 +20,7 @@ export class NewsDetailComponent {
   ) {
     this.published = data.date;
     this.article = data.article;
-  }
-
-  public parseDate(date: string): string {
-    return new Date(date).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', hour: 'numeric', minute: 'numeric' })
+    this.parseDate = parseDateHelper.parseDateTimeFirst;
   }
 
   close(): void {
