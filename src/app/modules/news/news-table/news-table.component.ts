@@ -31,6 +31,7 @@ export class NewsTableComponent implements OnInit, OnDestroy {
   public lastSort?: Sort;
   public isLoading: any;
   public serverError: any;
+  public isLocal: boolean = false;
 
   public refreshSubject = new BehaviorSubject(0);
 
@@ -82,6 +83,7 @@ export class NewsTableComponent implements OnInit, OnDestroy {
   ): Observable<INewsShort[]> {
     return this.newsService.getNews(limit, offset).pipe(
       map((res: PaginatedResponse<INewsShort>): INewsShort[] => {
+        this.isLocal = true;
         this.news = [];
         return _.uniqBy(res.results, 'title');
       }),

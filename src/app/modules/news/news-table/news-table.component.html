@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading || isLocal">
     <div *ngIf="serverError; else table">
       <app-error-message [error]="serverError"></app-error-message>
     </div>
