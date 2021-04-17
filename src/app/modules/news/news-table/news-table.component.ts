@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@
 import { BehaviorSubject, Observable, Subscriber, Subscription } from 'rxjs';
 import { INewsDetail, INewsShort } from '../types/news.type';
 import { MatDialog, MatDialogState } from '@angular/material/dialog';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { map, tap, switchMap, catchError } from 'rxjs/operators';
 import { MatSort, Sort } from '@angular/material/sort';
 import { NewsTableDataSource } from './news-table-data-source';
 import { NewsService } from '../../../services/news.service';
@@ -10,6 +10,7 @@ import { parseDateHelper } from '../../../helpers/parse-date-helper';
 import { PaginatedResponse } from '../../../types/paginated-response';
 import { NewsDetailComponent } from '../news-detail/news-detail.component';
 import { LoaderService } from '../../../services/loader.service';
+import { HttpErrorHandler } from '../../error-handler/error-handler';
 
 @Component({
   selector: 'app-news-table',
@@ -28,10 +29,12 @@ export class NewsTableComponent implements OnInit, OnDestroy {
   public parseDate: (date: string) => string;
   public lastSort?: Sort;
   public isLoading: any;
+  public serverError: any;
 
   public refreshSubject = new BehaviorSubject(0);
 
   private selectedRow = '';
+  private errorHandler = new HttpErrorHandler();
 
   constructor(
     public dialog: MatDialog,
@@ -61,10 +64,15 @@ export class NewsTableComponent implements OnInit, OnDestroy {
               if (this.lastSort) {
                 this.onSortChange(this.lastSort)
               }
-            })
+            }),
           )
         )
-      ).subscribe();
+      ).subscribe(
+        res => res,
+        err => {
+          this.serverError = this.errorHandler.handleError(err);
+        },
+    );
   }
 
   public getAllNews(
@@ -112,6 +120,9 @@ export class NewsTableComponent implements OnInit, OnDestroy {
           width: '800px',
           data: { date: n.published, article }
         })
+      },
+      err => {
+        this.serverError = this.errorHandler.handleError(err)
       }
     );
   }

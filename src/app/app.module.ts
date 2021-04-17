@@ -13,6 +13,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpErrorHandlerModule } from './modules/error-handler/error-handler.module';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SharedModule,
     NewsModule,
+    HttpErrorHandlerModule,
   ],
   providers: [
     ApiService,
